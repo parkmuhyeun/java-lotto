@@ -59,6 +59,21 @@ public enum NoticeMessage {
     }
 
     public static String printEarningRate(double earningRate) {
-        return "총 수익률은 " + String.format("%.1f", earningRate) + "%입니다.";
+        return "총 수익률은 " + getEarningRate(earningRate) + "%입니다.";
+    }
+
+    private static String getEarningRate(double earningRate) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        String format = String.format("%.1f", earningRate);
+        return getNumber(decimalFormat, format) + getDecimal(format);
+    }
+
+    private static String getDecimal(String format) {
+        int length = format.length();
+        return format.substring(length - 2, length);
+    }
+
+    private static String getNumber(DecimalFormat decimalFormat, String format) {
+        return decimalFormat.format(Long.parseLong(format.substring(0, format.length() - 2)));
     }
 }
