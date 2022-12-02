@@ -27,19 +27,17 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        for (int index = 0; index < numbers.size(); index++) {
-            if (isOutOfRange(getNumber(numbers, index))) {
-                throw new IllegalArgumentException(LOTTO_OUT_OF_RANGE.toString());
-            }
-        }
+        numbers.forEach(this::isOutOfRange);
     }
 
     private Integer getNumber(List<Integer> numbers, int index) {
         return numbers.get(index);
     }
 
-    private boolean isOutOfRange(Integer number) {
-        return number < LottoStatus.START.getValue() || number > LottoStatus.END.getValue();
+    private void isOutOfRange(int number) {
+        if (number < LottoStatus.START.getValue() || number > LottoStatus.END.getValue()) {
+            throw new IllegalArgumentException(LOTTO_OUT_OF_RANGE.toString());
+        }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
