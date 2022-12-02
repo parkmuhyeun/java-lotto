@@ -105,7 +105,7 @@ public class Validator {
     private void checkExist(String input, HashMap<Integer, Integer> exist) {
         for (String number : getNumbers(input)) {
             int luckyNumber = Integer.parseInt(number);
-            if (exist.get(luckyNumber) > LottoStatus.LIMIT.getValue()) {
+            if (exist.get(luckyNumber) > LottoStatus.DUPLICATION_LIMIT.getValue()) {
                 throw new IllegalArgumentException(LUCKY_NUMBER_DUPLICATION.toString());
             }
         }

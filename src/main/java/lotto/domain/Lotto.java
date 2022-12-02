@@ -55,7 +55,7 @@ public class Lotto {
     }
 
     private boolean isDuplicate(Integer exist) {
-        return exist > LottoStatus.LIMIT.getValue();
+        return exist > LottoStatus.DUPLICATION_LIMIT.getValue();
     }
 
     private void addExist(List<Integer> numbers, HashMap<Integer, Integer> exist) {

@@ -12,8 +12,8 @@ public class InputView {
         return printMessage(NoticeMessage.LUCKY_NUMBER);
     }
 
-    private String printMessage(NoticeMessage luckyNumber) {
-        System.out.println(luckyNumber);
+    private String printMessage(NoticeMessage inputMessage) {
+        System.out.println(inputMessage);
         String input = Console.readLine();
         System.out.println();
         return input;

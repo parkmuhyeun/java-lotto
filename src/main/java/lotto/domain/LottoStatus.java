@@ -4,10 +4,9 @@ public enum LottoStatus {
     START(1),
     END(45),
     SIZE(6),
-    LIMIT(1),
+    DUPLICATION_LIMIT(1),
     PRICE(1000),
-    PERCENT(100),
-    DELIMITER_LENGTH(3);
+    PERCENT(100);
 
     private final int value;
 
