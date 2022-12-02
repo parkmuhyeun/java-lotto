@@ -1,8 +1,7 @@
 package lotto.domain;
 
 import lotto.dto.ResultResponse;
-
-import static lotto.domain.LottoStatus.DELIMITER_LENGTH;
+import java.text.DecimalFormat;
 
 public enum NoticeMessage {
     PURCHASING_AMOUNT{
@@ -45,28 +44,11 @@ public enum NoticeMessage {
 
     public static String printWinningStatistics(ResultResponse result, int rank) {
         WinningNumberStatus winningNumberStatus = WinningNumberStatus.getWinningNumberStatusByOrder(rank);
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+
         return winningNumberStatus.getCount() + "개 일치" + getAdditionalSecondNotice(rank)
-                + " (" + getProcessedMoney(winningNumberStatus.getMoney())+ "원) - "
+                + " (" + decimalFormat.format(winningNumberStatus.getMoney())+ "원) - "
                 + result.getResult().get(rank) + "개";
-    }
-
-    private static String getProcessedMoney(int money) {
-        String interimMoney = String.valueOf(money);
-        int count = 0;
-
-        StringBuilder processedMoney = new StringBuilder();
-        for (int index = interimMoney.length(); index > 0; index--) {
-            if (count == DELIMITER_LENGTH.getValue()) {
-                processedMoney.append(",");
-                count = 0;
-                index++;
-                continue;
-            }
-
-            processedMoney.append(interimMoney.charAt(index - 1));
-            count++;
-        }
-        return processedMoney.reverse().toString();
     }
 
     private static String getAdditionalSecondNotice(int rank) {
