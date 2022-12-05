@@ -29,13 +29,10 @@ public class LottoController {
     public void start() {
         try {
             PurchasingAmount purchasingAmount = inputPurchasingAmount();
-
             List<Lotto> issuedLotteries = lottoService.issueLotto(purchasingAmount.getMoney());
             outputView.outputLotto(issuedLotteries);
-
             List<Integer> luckyNumber = inputLuckyNumber();
             String bonusNumberInput = inputBonusNumber(luckyNumber);
-
             ResultResponse result = checkLotto(issuedLotteries, luckyNumber, Integer.parseInt(bonusNumberInput));
             outputResult(purchasingAmount, result);
         } catch (IllegalArgumentException exception) {
