@@ -43,19 +43,9 @@ public class Lotto {
     private void validateDuplicate(List<Integer> numbers) {
         HashMap<Integer, Integer> exist = new HashMap<>();
         addExist(numbers, exist);
-        countExist(numbers, exist);
-    }
-
-    private void countExist(List<Integer> numbers, HashMap<Integer, Integer> exist) {
-        for (int index = 0; index < numbers.size(); index++) {
-            if (isDuplicate(exist.get(getNumber(numbers, index)))) {
-                throw new IllegalArgumentException(LOTTO_DUPLICATION.toString());
-            }
+        if (exist.size() != SIZE.getValue()) {
+            throw new IllegalArgumentException(LOTTO_DUPLICATION.toString());
         }
-    }
-
-    private boolean isDuplicate(Integer exist) {
-        return exist > LottoStatus.DUPLICATION_LIMIT.getValue();
     }
 
     private void addExist(List<Integer> numbers, HashMap<Integer, Integer> exist) {
